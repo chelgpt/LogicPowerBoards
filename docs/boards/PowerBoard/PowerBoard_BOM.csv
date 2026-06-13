@@ -1,0 +1,18 @@
+Reference,Qty,Value,Package,Notes
+U1,1,URF2405QB-100WR3,Quarter-brick through-hole,Official Mornsun footprint/pinout must be verified before ordering
+J_IN,1,24V input terminal 2P,5.08mm or higher current rated,Use connector rated for actual input current and wire gauge
+J_OUT,1,5V 20A output terminal 2P,high-current terminal block,20A path requires connector/pad current validation
+F1,1,20A fuse or 0R link,through-hole power footprint,Optional per final protection strategy
+R_LIMIT,1,Precharge resistor or jumper,high-power footprint,Final value/pulse power depends on supercap capacitance
+C_IN,1,220uF 63V low-ESR,THT radial,Place close to input pins
+C_IN_HF,1,100nF 50-100V,1206 ceramic,Place close to input pins
+C_OUT,1,470uF 35V low-ESR,THT radial,Place close to output pins/load terminal
+C_OUT_HF,1,100nF 50V,1206 ceramic,Place close to output pins
+D_TVS,1,SMDJ7.0A,SMC/SMDJ,Across OUT_5V and OUT_0V near output connector
+J_CTRL,1,Ctrl jumper/header,2.54mm 1x2,Open=ON short to GND_IN=OFF per project requirement
+RV1,1,3296W 10k,vertical trimmer,Trim network; final range must be tested
+R_TRIM_L,1,47k 1%,THT/SMD resistor,Between trim side and Sense-/0V per final schematic
+R_TRIM_H,1,47k 1%,THT/SMD resistor,Between trim side and Sense+/5V per final schematic
+JP_S+,1,Sense+ fallback solder jumper,2-pad solder jumper,Close if remote sense not wired
+JP_S-,1,Sense- fallback solder jumper,2-pad solder jumper,Close if remote sense not wired
+TP_VIN TP_GNDIN TP_5V TP_0V TP_TRIM TP_S+ TP_S-,7,Test points,1mm loop/pad,For bring-up and verification
