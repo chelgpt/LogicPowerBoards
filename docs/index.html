@@ -17,13 +17,22 @@
     #tab-logic:checked ~ .panels #panel-logic{display:block}
     .viewer-frame{width:100%;height:82vh;border:1px solid #334155;border-radius:14px;background:#06090d}
     .mini{color:#9fb0c3;font-size:14px;line-height:1.45}
+    .status{display:inline-block;padding:4px 8px;border-radius:8px;background:#3a2d00;color:#ffdf7e;border:1px solid #765c00;font-size:13px;font-weight:700}
+    .docgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="topbar">
       <h1>LogicPowerBoards — KiCad browser review</h1>
-      <p class="mini"><b>Status:</b> v3 starter for visual iteration. Not production-approved. Switch boards below; I can update repo and you just refresh this page.</p>
+      <p class="mini"><span class="status">v4B engineering candidate</span> Not final fab release. Current blockers: official Mornsun footprint/pinout, KiCad ERC/DRC, Gerber/Excellon export, independent Gerber review.</p>
+    </div>
+
+    <div class="card docgrid">
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/STATUS.md" target="_blank" rel="noopener">STATUS.md</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/CRITIQUE_AND_REMAKE_PLAN.md" target="_blank" rel="noopener">Critique / remake plan</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/MANUFACTURING_NOTES.md" target="_blank" rel="noopener">Manufacturing notes</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/CHECKLIST.md" target="_blank" rel="noopener">Production checklist</a>
     </div>
 
     <div class="card tabs">
@@ -41,7 +50,7 @@
         <section class="panel" id="panel-power">
           <div class="card">
             <h2>PowerBoard</h2>
-            <p>24V input → isolated 5V / 20A output. Mornsun URF2405QB-100WR3. Needs final sense/trim/ctrl pinout verification, inrush strategy, TVS, heavy copper, DRC/ERC.</p>
+            <p>24V input → isolated 5V / 20A output. URF2405QB-100WR3. v4B adds functional nets, input fuse/precharge path, TVS, sense fallback, trim block, testpoints and heavy-current routing intent.</p>
           </div>
           <iframe class="viewer-frame" src="power.html" title="PowerBoard KiCanvas"></iframe>
         </section>
@@ -49,7 +58,7 @@
         <section class="panel" id="panel-logic">
           <div class="card">
             <h2>LogicBoard</h2>
-            <p>24V input → isolated 12V / 6W output. Mornsun URB2412ZP-6WR3. Needs final pinout verification, capacitors/testpoints, DRC/ERC.</p>
+            <p>24V input → isolated 12V / 6W output. URB2412ZP-6WR3. v4B adds input/output capacitors, fan/output terminals, testpoints, isolation boundary and routed functional architecture.</p>
           </div>
           <iframe class="viewer-frame" src="logic.html" title="LogicBoard KiCanvas"></iframe>
         </section>
