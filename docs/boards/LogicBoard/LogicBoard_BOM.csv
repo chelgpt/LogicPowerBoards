@@ -1,0 +1,10 @@
+Reference,Qty,Value,Package,Notes
+U1,1,URB2412ZP-6WR3,DIP-8 through-hole,Official Mornsun footprint/pinout must be verified before ordering
+J1,1,24V input terminal 2P,5.08mm terminal block,Input from 24V rail
+J2,1,12V output terminal 2P,5.08mm terminal block,Output to logic rail
+J3,1,12V fan output terminal 2P,5.08mm terminal block,Optional fan/Noctua output if used by harness
+C1,1,10uF 50V low-ESR,THT radial D5,Input bulk capacitor
+C2,1,100nF 50-100V,1206 ceramic,Input HF capacitor close to U1
+C3,1,22uF 50V low-ESR,THT radial D5,Output bulk capacitor
+C4,1,100nF 50V,1206 ceramic,Output HF capacitor close to U1
+TP1 TP2 TP3 TP4,4,Test points,1mm loop/pad,+24V GND +12V 0V
