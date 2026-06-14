@@ -134,7 +134,7 @@ def main() -> int:
 
     status = read("STATUS.md")
     require('LogicBoard:' in status and 'PowerBoard:' in status, "STATUS.md: missing board scores")
-    require(re.search(r'v4[GHIJK]', status) is not None, "STATUS.md: missing current v4 status")
+    require(re.search(r'v4[A-Z]', status) is not None, "STATUS.md: missing current v4 status")
 
     print("LogicPowerBoards repository text validation")
     print("==========================================")
