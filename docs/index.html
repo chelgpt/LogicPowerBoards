@@ -25,13 +25,14 @@
   <div class="wrap">
     <div class="topbar">
       <h1>LogicPowerBoards — KiCad browser review</h1>
-      <p class="mini"><span class="status">v4F schematic generation</span> Component-level schematics are now generated from the locked netlist. Remaining gates: automated ERC/DRC, Gerber/Excellon, independent Gerber review, PowerBoard precharge closure.</p>
+      <p class="mini"><span class="status">v4G CI validation/export</span> GitHub Actions pipeline added: repository text validation, KiCad ERC, DRC, Gerber and drill export. Next engineering step is to read CI result and fix reported issues.</p>
     </div>
 
     <div class="card docgrid">
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/actions" target="_blank" rel="noopener">GitHub Actions</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/STATUS.md" target="_blank" rel="noopener">STATUS.md</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/NETLIST_LOCK_v4E.md" target="_blank" rel="noopener">Netlist lock v4E</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/FAB_READINESS_SCORECARD_v4F.md" target="_blank" rel="noopener">Fab scorecard v4F</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/FAB_READINESS_SCORECARD_v4G.md" target="_blank" rel="noopener">Fab scorecard v4G</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/NETLIST_LOCK_v4E.md" target="_blank" rel="noopener">Netlist lock</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/RELEASE_GATES_v4D.md" target="_blank" rel="noopener">Release gates</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/KICAD_DRC_RULES_v4D.md" target="_blank" rel="noopener">DRC rules</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/docs/boards/PowerBoard/PRECHARGE_REQUIREMENTS_v4D.md" target="_blank" rel="noopener">Power precharge</a>
@@ -52,7 +53,7 @@
         <section class="panel" id="panel-power">
           <div class="card">
             <h2>PowerBoard</h2>
-            <p>v4F replaced the text-only schematic with component-level KiCad schematic blocks generated from NETLIST_LOCK_v4E. Next: automated KiCad ERC/DRC/Gerber pipeline.</p>
+            <p>v4G adds CI validation/export pipeline. PowerBoard remains blocked by real supercap/precharge data plus CI ERC/DRC/Gerber results.</p>
           </div>
           <iframe class="viewer-frame" src="power.html" title="PowerBoard KiCanvas"></iframe>
         </section>
@@ -60,7 +61,7 @@
         <section class="panel" id="panel-logic">
           <div class="card">
             <h2>LogicBoard</h2>
-            <p>v4F replaced the text-only schematic with component-level KiCad schematic blocks and corrected URB ZP pin naming. Next: automated KiCad ERC/DRC/Gerber pipeline.</p>
+            <p>v4G adds CI validation/export pipeline. LogicBoard next gate is CI ERC/DRC/Gerber result and official footprint coordinate check.</p>
           </div>
           <iframe class="viewer-frame" src="logic.html" title="LogicBoard KiCanvas"></iframe>
         </section>
