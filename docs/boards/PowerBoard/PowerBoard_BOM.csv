@@ -1,18 +1,18 @@
 Reference,Qty,Value,Package,Notes
-U1,1,URF2405QB-100WR3,Quarter-brick through-hole,Official Mornsun footprint/pinout must be verified before ordering
+U1,1,URF2405QB-100WR3,quarter-brick through-hole,Official Mornsun footprint/pinout must be verified before ordering
 J_IN,1,24V input terminal 2P,5.08mm or higher current rated,Use connector rated for actual input current and wire gauge
-J_OUT,1,5V 20A output terminal 2P,high-current terminal block,20A path requires connector/pad current validation
-F1,1,20A fuse or 0R link,through-hole power footprint,Optional per final protection strategy
-R_LIMIT,1,Precharge resistor or jumper,high-power footprint,Final value/pulse power depends on supercap capacitance
+J_OUT,1,5V 20A output terminal 2P,30A-class high-current terminal,20A continuous path requires connector datasheet and pad current validation
+F1,1,10A slow fuse or 0R link,through-hole power footprint,Input-side candidate; final fuse based on real input current and inrush profile
+R_LIMIT,1,SIZE_BY_C_BANK,high-pulse-power resistor footprint,Final value and pulse power depend on supercap C ESR charge current and duty cycle
+J_BYP,1,External relay or MOSFET bypass header,2P through-hole,Bypass R_LIMIT only after precharge; do not short for first power-up
 C_IN,1,220uF 63V low-ESR,THT radial,Place close to input pins
-C_IN_HF,1,100nF 50-100V,1206 ceramic,Place close to input pins
-C_OUT,1,470uF 35V low-ESR,THT radial,Place close to output pins/load terminal
+C_IN_HF,1,10uF 50V X7R,1206 ceramic,Matches current PCB marking; add 100nF in next footprint revision if EMC testing requires it
+C_OUT,1,470uF 25-35V low-ESR,THT radial,35V preferred per original BOM; keep total direct output capacitance within module limit
 C_OUT_HF,1,100nF 50V,1206 ceramic,Place close to output pins
-D_TVS,1,SMDJ7.0A,SMC/SMDJ,Across OUT_5V and OUT_0V near output connector
-J_CTRL,1,Ctrl jumper/header,2.54mm 1x2,Open=ON short to GND_IN=OFF per project requirement
-RV1,1,3296W 10k,vertical trimmer,Trim network; final range must be tested
-R_TRIM_L,1,47k 1%,THT/SMD resistor,Between trim side and Sense-/0V per final schematic
-R_TRIM_H,1,47k 1%,THT/SMD resistor,Between trim side and Sense+/5V per final schematic
+D_TVS,1,TVS_SELECT DNP default,SMC/SMDJ footprint,Do not treat SMDJ7.0A as final supercap overvoltage protection without OVP strategy
+J_CTRL,1,Ctrl jumper/header,2.54mm 1x2,Open=ON; short CTRL to GND_IN=OFF
+RV1,1,3296W 10k DNP until trim target set,vertical trimmer,Trim optional; default private prototype can run nominal output with trim unpopulated
 JP_S+,1,Sense+ fallback solder jumper,2-pad solder jumper,Close if remote sense not wired
 JP_S-,1,Sense- fallback solder jumper,2-pad solder jumper,Close if remote sense not wired
 TP_VIN TP_GNDIN TP_5V TP_0V TP_TRIM TP_S+ TP_S-,7,Test points,1mm loop/pad,For bring-up and verification
+H1 H2,2,M3 mounting holes,NPTH 3.2mm,Mechanical mounting; keep metal hardware away from live copper
