@@ -25,16 +25,16 @@
   <div class="wrap">
     <div class="topbar">
       <h1>LogicPowerBoards — KiCad browser review</h1>
-      <p class="mini"><span class="status">v4D engineering review</span> Viewer is for layout review. Still requires official footprint import/check, ERC/DRC, Gerber/Excellon and independent Gerber review before factory order.</p>
+      <p class="mini"><span class="status">v4E netlist + DRC lock</span> I own the KiCad workflow. User-side KiCad opening is not required. Remaining hard gates: real schematic generation, ERC/DRC, Gerber/Excellon, external Gerber review.</p>
     </div>
 
     <div class="card docgrid">
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/STATUS.md" target="_blank" rel="noopener">STATUS.md</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/RELEASE_GATES_v4D.md" target="_blank" rel="noopener">Release gates v4D</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/KICAD_DRC_RULES_v4D.md" target="_blank" rel="noopener">DRC rules v4D</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/NETLIST_LOCK_v4E.md" target="_blank" rel="noopener">Netlist lock v4E</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/FAB_READINESS_SCORECARD_v4E.md" target="_blank" rel="noopener">Fab scorecard v4E</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/RELEASE_GATES_v4D.md" target="_blank" rel="noopener">Release gates</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/KICAD_DRC_RULES_v4D.md" target="_blank" rel="noopener">DRC rules</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/docs/boards/PowerBoard/PRECHARGE_REQUIREMENTS_v4D.md" target="_blank" rel="noopener">Power precharge</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/AI_AUDIT_SYNTHESIS_v4C.md" target="_blank" rel="noopener">AI audit synthesis</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/MANUFACTURING_NOTES.md" target="_blank" rel="noopener">Manufacturing notes</a>
     </div>
 
     <div class="card tabs">
@@ -52,7 +52,7 @@
         <section class="panel" id="panel-power">
           <div class="card">
             <h2>PowerBoard</h2>
-            <p>URF2405QB-100WR3. v4C fixed URF drill sizes and added precharge/bypass architecture. v4D adds release gates and explicit DRC rules. Not a blind-order release until precharge, thermal, connector and official footprint checks close.</p>
+            <p>v4E locks project DRC/net classes and electrical netlist reference. Next: real KiCad schematic from NETLIST_LOCK_v4E, then ERC/DRC/Gerber pipeline.</p>
           </div>
           <iframe class="viewer-frame" src="power.html" title="PowerBoard KiCanvas"></iframe>
         </section>
@@ -60,7 +60,7 @@
         <section class="panel" id="panel-logic">
           <div class="card">
             <h2>LogicBoard</h2>
-            <p>URB2412ZP-6WR3. v4C corrected the module from wrong DIP8 placeholder to DIP24-grid populated-pin footprint and updated input capacitors. Next gate is exact footprint coordinate check plus KiCad ERC/DRC.</p>
+            <p>v4E locks 0.30mm clearance, LOGIC_POWER net class and corrected URB ZP connectivity. Next: real KiCad schematic and ERC/DRC closure.</p>
           </div>
           <iframe class="viewer-frame" src="logic.html" title="LogicBoard KiCanvas"></iframe>
         </section>
