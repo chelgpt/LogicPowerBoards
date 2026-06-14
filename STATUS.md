@@ -2,7 +2,7 @@
 
 ## Current version
 
-v4I split workflow stabilization.
+v4J fabrication package manifest.
 
 ## What changed in v4C
 
@@ -52,10 +52,14 @@ v4I split workflow stabilization.
 - Left .github/workflows/kicad-ci.yml as manual heavy KiCad ERC/DRC/Gerber workflow.
 - Made scripts/validate_repo.py version-tolerant so future status bumps do not break text validation by stale exact-version strings.
 
+## What changed in v4J
+
+- Added FAB_PACKAGE_MANIFEST_v4J.md defining expected fabrication artifact contents, factory parameters and no-order conditions.
+
 ## Current confidence
 
-- LogicBoard: 85/100 as PCB architecture. Main remaining blockers: exact official footprint coordinate check, GitHub text-validation result, automated KiCad ERC/DRC results, Gerber artifact review.
-- PowerBoard: 71/100 as PCB architecture. Main remaining blockers: capacitive-load precharge design, official footprint coordinate check, thermal/current verification, GitHub text-validation result, automated KiCad ERC/DRC results, Gerber artifact review.
+- LogicBoard: 86/100 as PCB architecture. Main remaining blockers: exact official footprint coordinate check, GitHub text-validation result, automated KiCad ERC/DRC results, Gerber artifact review.
+- PowerBoard: 72/100 as PCB architecture. Main remaining blockers: capacitive-load precharge design, official footprint coordinate check, thermal/current verification, GitHub text-validation result, automated KiCad ERC/DRC results, Gerber artifact review.
 
 ## Blocking items before fab-ready release
 
@@ -72,4 +76,4 @@ v4I split workflow stabilization.
 
 ## Hard warning
 
-v4I separates safe text validation from heavy KiCad export. This prevents repeated heavy-job failure emails during normal engineering commits while preserving a manual path to ERC, DRC and fabrication outputs.
+v4J defines the fabrication package contract but does not replace ERC, DRC and Gerber review. Do not order until the CI export produces clean reports and reviewed Gerbers.
