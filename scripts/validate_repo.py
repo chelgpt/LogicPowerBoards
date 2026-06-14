@@ -23,11 +23,6 @@ def require(condition: bool, message: str) -> None:
         ERRORS.append(message)
 
 
-def warn(condition: bool, message: str) -> None:
-    if not condition:
-        WARNINGS.append(message)
-
-
 def balanced_parens(text: str) -> bool:
     depth = 0
     in_string = False
@@ -71,10 +66,12 @@ def main() -> int:
         "docs/boards/LogicBoard/LogicBoard.kicad_sch",
         "docs/boards/LogicBoard/LogicBoard.kicad_pcb",
         "NETLIST_LOCK_v4E.md",
-        "FAB_READINESS_SCORECARD_v4F.md",
+        "FAB_READINESS_SCORECARD_v4G.md",
         "RELEASE_GATES_v4D.md",
         "KICAD_DRC_RULES_v4D.md",
         "docs/boards/PowerBoard/PRECHARGE_REQUIREMENTS_v4D.md",
+        "scripts/kicad_export.sh",
+        ".github/workflows/kicad-ci.yml",
     ]
     for path in required:
         read(path)
@@ -99,9 +96,9 @@ def main() -> int:
     ], "PowerBoard PCB")
 
     for pin in ["1", "2", "3", "5", "6", "7"]:
-        require(re.search(rf'\(pad "{pin}"[^\n]+\(drill 1\.5\)', power_pcb), f"PowerBoard PCB: URF pin {pin} must have 1.5mm drill")
+        require(re.search(rf'\(pad "{pin}"[^\n]+\(drill 1\.5\)', power_pcb) is not None, f"PowerBoard PCB: URF pin {pin} must have 1.5mm drill")
     for pin in ["4", "8"]:
-        require(re.search(rf'\(pad "{pin}"[^\n]+\(drill 2\.0\)', power_pcb), f"PowerBoard PCB: URF power pin {pin} must have 2.0mm drill")
+        require(re.search(rf'\(pad "{pin}"[^\n]+\(drill 2\.0\)', power_pcb) is not None, f"PowerBoard PCB: URF power pin {pin} must have 2.0mm drill")
 
     require_contains(power_sch, [
         'title "PowerBoard"', 'rev "v4F"', 'URF2405QB-100WR3', 'R_LIMIT', 'J_BYP',
@@ -115,7 +112,7 @@ def main() -> int:
 
     require_contains(logic_pcb, [
         'Mornsun_URB2412ZP_6WR3_DIP24', '(pad "2"', '(pad "3"', '(pad "11"',
-        '(pad "14"', '(pad "16"', '(pad "22"', '(pad "23"', 'LOGICBOARD v4C'
+        '(pad "14"', '(pad "16"', '(pad "22"', '(pad "23"', 'DIP24 PINOUT'
     ], "LogicBoard PCB")
     require('pad "9"' not in logic_pcb, "LogicBoard PCB: pin 9 must remain absent")
 
@@ -128,21 +125,26 @@ def main() -> int:
         '"clearance": 0.3', '"LOGIC_POWER"', '"OUT_12V": "LOGIC_POWER"'
     ], "LogicBoard project")
 
+    workflow = read(".github/workflows/kicad-ci.yml")
+    require_contains(workflow, ['Text/netlist validation', 'KiCad ERC DRC Gerber export', 'kicad_export.sh'], "workflow")
+
+    export_script = read("scripts/kicad_export.sh")
+    require_contains(export_script, ['kicad-cli sch erc', 'kicad-cli pcb drc', 'kicad-cli pcb export gerbers', 'kicad-cli pcb export drill'], "kicad_export.sh")
+
     status = read("STATUS.md")
-    require_contains(status, ['v4F schematic generation iteration', 'LogicBoard: 82/100', 'PowerBoard: 68/100'], "STATUS.md")
+    require_contains(status, ['v4G CI validation and export pipeline', 'LogicBoard: 84/100', 'PowerBoard: 70/100'], "STATUS.md")
+
+    scorecard = read("FAB_READINESS_SCORECARD_v4G.md")
+    require_contains(scorecard, ['Current score: 84/100 before CI results', 'Current score: 70/100 before CI results'], "FAB_READINESS_SCORECARD_v4G.md")
 
     print("LogicPowerBoards repository text validation")
     print("==========================================")
-    if WARNINGS:
-        print("Warnings:")
-        for w in WARNINGS:
-            print(f"- {w}")
     if ERRORS:
         print("Errors:")
         for e in ERRORS:
             print(f"- {e}")
         return 1
-    print("PASS: required files, key net names, pin maps, drills, net classes and v4F status are present.")
+    print("PASS: required files, key net names, pin maps, drills, net classes, workflow scripts and v4G status are present.")
     return 0
 
 
