@@ -2,7 +2,7 @@
 
 ## Current version
 
-v4D engineering review gate iteration.
+v4E netlist and DRC lock iteration.
 
 ## What changed in v4C
 
@@ -24,10 +24,17 @@ v4D engineering review gate iteration.
 - Updated GitHub Pages index to show v4D review state and direct engineering-document links.
 - Removed temporary connector test file.
 
+## What changed in v4E
+
+- PowerBoard.kicad_pro now has 0.30mm default clearance and explicit net classes: POWER_INPUT, POWER_OUTPUT_20A, SENSE_TRIM_CTRL.
+- LogicBoard.kicad_pro now has 0.30mm default clearance and LOGIC_POWER net class.
+- Added NETLIST_LOCK_v4E.md as the locked electrical connectivity reference.
+- Added FAB_READINESS_SCORECARD_v4E.md.
+
 ## Current confidence
 
-- LogicBoard: 72/100 as PCB architecture. Main remaining blockers: exact official footprint coordinate check, real KiCad schematic, ERC/DRC, Gerber review.
-- PowerBoard: 58/100 as PCB architecture. Main remaining blockers: load precharge design, official footprint coordinate check, thermal/current verification, real KiCad schematic, ERC/DRC, Gerber review.
+- LogicBoard: 76/100 as PCB architecture. Main remaining blockers: exact official footprint coordinate check, real KiCad schematic, ERC/DRC, Gerber review.
+- PowerBoard: 62/100 as PCB architecture. Main remaining blockers: capacitive-load precharge design, official footprint coordinate check, thermal/current verification, real KiCad schematic, ERC/DRC, Gerber review.
 
 ## Blocking items before fab-ready release
 
@@ -44,4 +51,4 @@ v4D engineering review gate iteration.
 
 ## Hard warning
 
-Current v4D files are closer to a responsible engineering candidate, but still not a blind-order manufacturing release. The largest remaining technical risk is the PowerBoard use case: charging a large capacitive bank from a 5V/20A module. That load must be isolated by a controlled precharge stage and verified on the bench.
+Current v4E files are closer to a responsible engineering candidate, but still not a blind-order manufacturing release. The largest remaining technical risk is the PowerBoard use case: charging a large capacitive bank from a 5V/20A module. That load must be isolated by a controlled precharge stage and verified on the bench.
