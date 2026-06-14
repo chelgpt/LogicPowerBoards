@@ -2,7 +2,7 @@
 
 ## Current version
 
-v4E netlist and DRC lock iteration.
+v4F schematic generation iteration.
 
 ## What changed in v4C
 
@@ -31,24 +31,30 @@ v4E netlist and DRC lock iteration.
 - Added NETLIST_LOCK_v4E.md as the locked electrical connectivity reference.
 - Added FAB_READINESS_SCORECARD_v4E.md.
 
+## What changed in v4F
+
+- Replaced LogicBoard text-only schematic placeholder with a component-level KiCad schematic generated from NETLIST_LOCK_v4E.
+- Replaced PowerBoard text-only schematic placeholder with a component-level KiCad schematic generated from NETLIST_LOCK_v4E.
+- LogicBoard schematic now shows J1, U1, C1, C2, C3, C4, J2 and J3 with corrected URB ZP pin naming.
+- PowerBoard schematic now shows J_IN, F1, R_LIMIT, J_BYP, U1, C_IN, C_OUT, JP_S+, JP_S-, J_OUT and J_CTRL.
+
 ## Current confidence
 
-- LogicBoard: 76/100 as PCB architecture. Main remaining blockers: exact official footprint coordinate check, real KiCad schematic, ERC/DRC, Gerber review.
-- PowerBoard: 62/100 as PCB architecture. Main remaining blockers: capacitive-load precharge design, official footprint coordinate check, thermal/current verification, real KiCad schematic, ERC/DRC, Gerber review.
+- LogicBoard: 82/100 as PCB architecture. Main remaining blockers: exact official footprint coordinate check, automated KiCad ERC/DRC, Gerber review.
+- PowerBoard: 68/100 as PCB architecture. Main remaining blockers: capacitive-load precharge design, official footprint coordinate check, thermal/current verification, automated KiCad ERC/DRC, Gerber review.
 
 ## Blocking items before fab-ready release
 
 1. Physical or official footprint verification for both Mornsun modules.
-2. Real schematic, not text placeholders.
-3. KiCad ERC on the real schematic.
-4. KiCad DRC on PCB with 0.30mm clearance and real fab constraints.
-5. Gerber and Excellon export.
-6. Independent Gerber viewer check.
-7. Real capacitive-load data: capacitance, ESR and allowed charge current.
-8. Precharge resistor / relay / MOSFET sizing and thermal validation.
-9. 20A output connector part number and current rating confirmation.
-10. Human EE review before production order.
+2. Automated KiCad ERC on the v4F schematic.
+3. Automated KiCad DRC on PCB with 0.30mm clearance and real fab constraints.
+4. Gerber and Excellon export.
+5. Independent Gerber viewer check.
+6. Real capacitive-load data: capacitance, ESR and allowed charge current.
+7. Precharge resistor / relay / MOSFET sizing and thermal validation.
+8. 20A output connector part number and current rating confirmation.
+9. Human EE review before production order.
 
 ## Hard warning
 
-Current v4E files are closer to a responsible engineering candidate, but still not a blind-order manufacturing release. The largest remaining technical risk is the PowerBoard use case: charging a large capacitive bank from a 5V/20A module. That load must be isolated by a controlled precharge stage and verified on the bench.
+Current v4F files are no longer only PCB drawings: they now include component-level schematic files. The largest remaining technical risk is still the PowerBoard use case: charging a large capacitive bank from a 5V/20A module. That load must be isolated by a controlled precharge stage and verified on the bench.
