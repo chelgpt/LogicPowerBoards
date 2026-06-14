@@ -25,13 +25,13 @@
   <div class="wrap">
     <div class="topbar">
       <h1>LogicPowerBoards — KiCad browser review</h1>
-      <p class="mini"><span class="status">v4E netlist + DRC lock</span> I own the KiCad workflow. User-side KiCad opening is not required. Remaining hard gates: real schematic generation, ERC/DRC, Gerber/Excellon, external Gerber review.</p>
+      <p class="mini"><span class="status">v4F schematic generation</span> Component-level schematics are now generated from the locked netlist. Remaining gates: automated ERC/DRC, Gerber/Excellon, independent Gerber review, PowerBoard precharge closure.</p>
     </div>
 
     <div class="card docgrid">
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/STATUS.md" target="_blank" rel="noopener">STATUS.md</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/NETLIST_LOCK_v4E.md" target="_blank" rel="noopener">Netlist lock v4E</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/FAB_READINESS_SCORECARD_v4E.md" target="_blank" rel="noopener">Fab scorecard v4E</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/FAB_READINESS_SCORECARD_v4F.md" target="_blank" rel="noopener">Fab scorecard v4F</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/RELEASE_GATES_v4D.md" target="_blank" rel="noopener">Release gates</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/KICAD_DRC_RULES_v4D.md" target="_blank" rel="noopener">DRC rules</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/docs/boards/PowerBoard/PRECHARGE_REQUIREMENTS_v4D.md" target="_blank" rel="noopener">Power precharge</a>
@@ -52,7 +52,7 @@
         <section class="panel" id="panel-power">
           <div class="card">
             <h2>PowerBoard</h2>
-            <p>v4E locks project DRC/net classes and electrical netlist reference. Next: real KiCad schematic from NETLIST_LOCK_v4E, then ERC/DRC/Gerber pipeline.</p>
+            <p>v4F replaced the text-only schematic with component-level KiCad schematic blocks generated from NETLIST_LOCK_v4E. Next: automated KiCad ERC/DRC/Gerber pipeline.</p>
           </div>
           <iframe class="viewer-frame" src="power.html" title="PowerBoard KiCanvas"></iframe>
         </section>
@@ -60,7 +60,7 @@
         <section class="panel" id="panel-logic">
           <div class="card">
             <h2>LogicBoard</h2>
-            <p>v4E locks 0.30mm clearance, LOGIC_POWER net class and corrected URB ZP connectivity. Next: real KiCad schematic and ERC/DRC closure.</p>
+            <p>v4F replaced the text-only schematic with component-level KiCad schematic blocks and corrected URB ZP pin naming. Next: automated KiCad ERC/DRC/Gerber pipeline.</p>
           </div>
           <iframe class="viewer-frame" src="logic.html" title="LogicBoard KiCanvas"></iframe>
         </section>
