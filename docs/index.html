@@ -25,16 +25,17 @@
   <div class="wrap">
     <div class="topbar">
       <h1>LogicPowerBoards — KiCad browser review</h1>
-      <p class="mini"><span class="status">v4K mechanical completeness</span> Mounting holes, testpoints and stronger board silkscreen guards added. Next gates: text-validation, manual KiCad ERC/DRC/Gerber export, official footprint coordinate check.</p>
+      <p class="mini"><span class="status">v4M BOM + production gate</span> Current BOMs, assembly/bring-up procedure and production-gate matrix are aligned with the v4K board state. Next gates: text-validation, manual KiCad ERC/DRC/Gerber export, official footprint coordinate check.</p>
     </div>
 
     <div class="card docgrid">
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/actions" target="_blank" rel="noopener">GitHub Actions</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/STATUS.md" target="_blank" rel="noopener">STATUS.md</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/FAB_READINESS_SCORECARD_v4K.md" target="_blank" rel="noopener">Fab scorecard v4K</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/PRODUCTION_GATE_v4M.md" target="_blank" rel="noopener">Production gate v4M</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/ASSEMBLY_AND_BRINGUP_v4M.md" target="_blank" rel="noopener">Assembly + bring-up</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/BOM_AUDIT_v4M.md" target="_blank" rel="noopener">BOM audit v4M</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/FAB_PACKAGE_MANIFEST_v4J.md" target="_blank" rel="noopener">Fab package manifest</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/NETLIST_LOCK_v4E.md" target="_blank" rel="noopener">Netlist lock</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/KICAD_DRC_RULES_v4D.md" target="_blank" rel="noopener">DRC rules</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/docs/boards/PowerBoard/PRECHARGE_REQUIREMENTS_v4D.md" target="_blank" rel="noopener">Power precharge</a>
     </div>
 
@@ -53,7 +54,7 @@
         <section class="panel" id="panel-power">
           <div class="card">
             <h2>PowerBoard</h2>
-            <p>v4K adds M3 mounting holes, seven bring-up testpoints, stronger no-copper/sense/precharge warnings and domain labels. PowerBoard still needs precharge data and KiCad ERC/DRC/Gerber closure.</p>
+            <p>v4M BOM and bring-up docs now match the v4K board state. PowerBoard remains blocked by real supercap/precharge data and KiCad ERC/DRC/Gerber closure.</p>
           </div>
           <iframe class="viewer-frame" src="power.html" title="PowerBoard KiCanvas"></iframe>
         </section>
@@ -61,7 +62,7 @@
         <section class="panel" id="panel-logic">
           <div class="card">
             <h2>LogicBoard</h2>
-            <p>v4K adds M3 mounting holes, four bring-up testpoints and stronger polarity labels. LogicBoard is now mechanically closer to private prototype order, pending official footprint coordinate and ERC/DRC checks.</p>
+            <p>v4M rejects the stale DIP8 BOM assumption and keeps the corrected URB ZP DIP24 populated-pin implementation. LogicBoard next gate is ERC/DRC/Gerber and official footprint coordinate check.</p>
           </div>
           <iframe class="viewer-frame" src="logic.html" title="LogicBoard KiCanvas"></iframe>
         </section>
