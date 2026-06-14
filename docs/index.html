@@ -25,14 +25,16 @@
   <div class="wrap">
     <div class="topbar">
       <h1>LogicPowerBoards — KiCad browser review</h1>
-      <p class="mini"><span class="status">v4B engineering candidate</span> Not final fab release. Current blockers: official Mornsun footprint/pinout, KiCad ERC/DRC, Gerber/Excellon export, independent Gerber review.</p>
+      <p class="mini"><span class="status">v4D engineering review</span> Viewer is for layout review. Still requires official footprint import/check, ERC/DRC, Gerber/Excellon and independent Gerber review before factory order.</p>
     </div>
 
     <div class="card docgrid">
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/STATUS.md" target="_blank" rel="noopener">STATUS.md</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/CRITIQUE_AND_REMAKE_PLAN.md" target="_blank" rel="noopener">Critique / remake plan</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/RELEASE_GATES_v4D.md" target="_blank" rel="noopener">Release gates v4D</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/KICAD_DRC_RULES_v4D.md" target="_blank" rel="noopener">DRC rules v4D</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/docs/boards/PowerBoard/PRECHARGE_REQUIREMENTS_v4D.md" target="_blank" rel="noopener">Power precharge</a>
+      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/AI_AUDIT_SYNTHESIS_v4C.md" target="_blank" rel="noopener">AI audit synthesis</a>
       <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/MANUFACTURING_NOTES.md" target="_blank" rel="noopener">Manufacturing notes</a>
-      <a class="open-link" href="https://github.com/chelgpt/LogicPowerBoards/blob/main/CHECKLIST.md" target="_blank" rel="noopener">Production checklist</a>
     </div>
 
     <div class="card tabs">
@@ -50,7 +52,7 @@
         <section class="panel" id="panel-power">
           <div class="card">
             <h2>PowerBoard</h2>
-            <p>24V input → isolated 5V / 20A output. URF2405QB-100WR3. v4B adds functional nets, input fuse/precharge path, TVS, sense fallback, trim block, testpoints and heavy-current routing intent.</p>
+            <p>URF2405QB-100WR3. v4C fixed URF drill sizes and added precharge/bypass architecture. v4D adds release gates and explicit DRC rules. Not a blind-order release until precharge, thermal, connector and official footprint checks close.</p>
           </div>
           <iframe class="viewer-frame" src="power.html" title="PowerBoard KiCanvas"></iframe>
         </section>
@@ -58,7 +60,7 @@
         <section class="panel" id="panel-logic">
           <div class="card">
             <h2>LogicBoard</h2>
-            <p>24V input → isolated 12V / 6W output. URB2412ZP-6WR3. v4B adds input/output capacitors, fan/output terminals, testpoints, isolation boundary and routed functional architecture.</p>
+            <p>URB2412ZP-6WR3. v4C corrected the module from wrong DIP8 placeholder to DIP24-grid populated-pin footprint and updated input capacitors. Next gate is exact footprint coordinate check plus KiCad ERC/DRC.</p>
           </div>
           <iframe class="viewer-frame" src="logic.html" title="LogicBoard KiCanvas"></iframe>
         </section>
