@@ -72,6 +72,7 @@ def main() -> int:
         "docs/boards/PowerBoard/PRECHARGE_REQUIREMENTS_v4D.md",
         "scripts/kicad_export.sh",
         ".github/workflows/kicad-ci.yml",
+        ".github/workflows/text-validation.yml",
     ]
     for path in required:
         read(path)
@@ -92,7 +93,8 @@ def main() -> int:
         'net 1 "VIN_24V"', 'net 2 "GND_IN"', 'net 3 "VIN_AFTER_F1"', 'net 4 "VIN_TO_MODULE"',
         'net 5 "OUT_5V"', 'net 6 "OUT_0V"', 'net 7 "CTRL"', 'net 8 "TRIM"',
         'net 9 "SENSE_P"', 'net 10 "SENSE_N"', 'Mornsun_URF2405QB_100WR3_QB',
-        'External_Bypass_Header', 'SIZE_BY_C_BANK'
+        'External_Bypass_Header', 'SIZE_BY_C_BANK', 'MountingHole_M3', 'TP_VIN', 'TP_GNDIN',
+        'TP_5V', 'TP_0V', 'TP_TRIM', 'TP_S+', 'TP_S-', 'POWERBOARD v4K'
     ], "PowerBoard PCB")
     for pin in ["1", "2", "3", "5", "6", "7"]:
         require(re.search(rf'\(pad "{pin}"[^\n]+\(drill 1\.5\)', power_pcb) is not None, f"PowerBoard PCB: URF pin {pin} must have 1.5mm drill")
@@ -110,7 +112,8 @@ def main() -> int:
 
     require_contains(logic_pcb, [
         'Mornsun_URB2412ZP_6WR3_DIP24', '(pad "2"', '(pad "3"', '(pad "11"',
-        '(pad "14"', '(pad "16"', '(pad "22"', '(pad "23"', 'DIP24 PINOUT'
+        '(pad "14"', '(pad "16"', '(pad "22"', '(pad "23"', 'DIP24 PINOUT',
+        'MountingHole_M3', 'TP1_24V', 'TP2_GND', 'TP3_12V', 'TP4_0V', 'LOGICBOARD v4K'
     ], "LogicBoard PCB")
     require('pad "9"' not in logic_pcb, "LogicBoard PCB: pin 9 must remain absent")
     require_contains(logic_sch, [
@@ -124,14 +127,14 @@ def main() -> int:
     ], "kicad_export.sh")
     require_contains(read(".github/workflows/kicad-ci.yml"), [
         'workflow_dispatch', 'Text/netlist validation', 'KiCad ERC DRC Gerber export', 'kicad_export.sh'
-    ], "workflow")
+    ], "heavy workflow")
+    require_contains(read(".github/workflows/text-validation.yml"), [
+        'push:', 'Validate repository text contracts', 'scripts/validate_repo.py'
+    ], "text workflow")
 
     status = read("STATUS.md")
     require('LogicBoard:' in status and 'PowerBoard:' in status, "STATUS.md: missing board scores")
-    require(re.search(r'v4[FGHI]', status) is not None, "STATUS.md: missing current v4 status")
-
-    scorecard = read("FAB_READINESS_SCORECARD_v4G.md")
-    require_contains(scorecard, ['LogicBoard', 'PowerBoard', 'Current score: 84/100', 'Current score: 70/100'], "FAB_READINESS_SCORECARD_v4G.md")
+    require(re.search(r'v4[GHIJK]', status) is not None, "STATUS.md: missing current v4 status")
 
     print("LogicPowerBoards repository text validation")
     print("==========================================")
@@ -140,7 +143,7 @@ def main() -> int:
         for e in ERRORS:
             print(f"- {e}")
         return 1
-    print("PASS: files, KiCad text structure, net names, pin maps, drills, net classes and workflow contracts are present.")
+    print("PASS: files, KiCad text structure, net names, pin maps, drills, testpoints, mounting holes, net classes and workflow contracts are present.")
     return 0
 
 
