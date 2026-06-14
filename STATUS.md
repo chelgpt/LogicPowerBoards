@@ -2,7 +2,7 @@
 
 ## Current version
 
-v4L engineering freeze.
+v4M BOM and production gate pass.
 
 ## What changed in v4K
 
@@ -17,24 +17,31 @@ v4L engineering freeze.
 ## What changed in v4L
 
 - Added ENGINEERING_FREEZE_v4L.md.
-- Stopped speculative repo churn until CI logs, generated Gerbers, official footprint coordinates or real PowerBoard load data are available.
+- Stopped speculative layout churn until CI logs, generated Gerbers, official footprint coordinates or real PowerBoard load data are available.
+
+## What changed in v4M
+
+- Updated PowerBoard_BOM.csv to match the v4K PCB state and current engineering decisions.
+- Updated LogicBoard_BOM.csv to match the v4K PCB state and reject the stale DIP8 assumption.
+- Added BOM_AUDIT_v4M.md to reconcile the uploaded BOM/TZ with the current design.
+- Added ASSEMBLY_AND_BRINGUP_v4M.md.
+- Added PRODUCTION_GATE_v4M.md.
+- Fixed validate_repo.py version matcher so v4L/v4M and later statuses do not break CI.
 
 ## Current confidence
 
-- LogicBoard: 88/100 as PCB architecture before automated ERC/DRC. Close to private prototype candidate after clean ERC/DRC and footprint-coordinate check.
-- PowerBoard: 76/100 as PCB architecture before automated ERC/DRC and precharge closure. Not blind-order production-ready until real capacitive-bank/precharge data are closed.
+- LogicBoard: 89/100 as PCB architecture before automated ERC/DRC. Close to private prototype candidate after clean ERC/DRC and footprint-coordinate check.
+- PowerBoard: 78/100 as PCB architecture before automated ERC/DRC and precharge closure. Not blind-order production-ready until real capacitive-bank/precharge data are closed.
 
-## Stop condition
+## Next objective
 
-Do not continue layout iterations without one of these inputs:
+Continue toward validation output, not cosmetic layout churn:
 
-1. GitHub Actions text-validation failure log.
-2. GitHub Actions KiCad ERC/DRC/export failure log.
-3. Generated fabrication-output artifact.
-4. Official Mornsun footprint coordinate file or drawing extraction.
-5. Real PowerBoard capacitive-bank data: capacitance, ESR, allowed charge current, duty cycle.
-6. Selected 20A output connector part number.
+1. Get text-validation to pass.
+2. Run or inspect heavy KiCad ERC/DRC/Gerber workflow.
+3. Fix actual reported errors.
+4. Produce reviewed fabrication package.
 
 ## Hard warning
 
-This is an engineering freeze, not a production release. Continuing blind edits now would be fake progress. The next meaningful move is validation, not more speculative changes.
+v4M improves BOM/assembly/readiness closure but is still not a production release. The remaining blockers are validation outputs and PowerBoard load/precharge data.
