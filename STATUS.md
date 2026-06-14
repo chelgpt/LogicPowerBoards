@@ -2,88 +2,39 @@
 
 ## Current version
 
-v4K mechanical completeness pass.
-
-## What changed in v4C
-
-- LogicBoard footprint changed from wrong DIP-8 placeholder to URB ZP-style DIP24 populated-pin footprint.
-- LogicBoard U1 pins now map to: 2,3 = GND_IN; 11 = NC; 14 = OUT_12V; 16 = GND_OUT; 22,23 = VIN_24V. Pin 9 is intentionally absent.
-- LogicBoard input capacitor changed to 100uF/50V plus 1uF HF footprint per audit consensus.
-- PowerBoard URF pin drills corrected: pins 1,2,3,5,6,7 use 1.5mm drill; pins 4 and 8 use 2.0mm drill.
-- PowerBoard output terminal pads enlarged and marked as 30A-class footprint target.
-- PowerBoard fuse label changed from 20A default to 10A slow/link candidate on input side.
-- PowerBoard precharge block is marked SIZE_BY_C_BANK, not final electrical value.
-- PowerBoard external bypass header added for relay/MOSFET bypass concept.
-- PowerBoard TVS footprint changed to SELECT/DNP default because SMDJ7.0A is not sufficient as load over-voltage protection.
-
-## What changed in v4D
-
-- Added RELEASE_GATES_v4D.md.
-- Added KICAD_DRC_RULES_v4D.md.
-- Added PowerBoard PRECHARGE_REQUIREMENTS_v4D.md.
-- Removed temporary connector test file.
-
-## What changed in v4E
-
-- PowerBoard.kicad_pro now has 0.30mm default clearance and explicit net classes: POWER_INPUT, POWER_OUTPUT_20A, SENSE_TRIM_CTRL.
-- LogicBoard.kicad_pro now has 0.30mm default clearance and LOGIC_POWER net class.
-- Added NETLIST_LOCK_v4E.md as the locked electrical connectivity reference.
-
-## What changed in v4F
-
-- Replaced LogicBoard text-only schematic placeholder with a component-level KiCad schematic generated from NETLIST_LOCK_v4E.
-- Replaced PowerBoard text-only schematic placeholder with a component-level KiCad schematic generated from NETLIST_LOCK_v4E.
-
-## What changed in v4G
-
-- Added scripts/validate_repo.py for deterministic text/netlist/pin/drill/project-rule validation.
-- Added scripts/kicad_export.sh for kicad-cli ERC, DRC, Gerber and drill export.
-- Added .github/workflows/kicad-ci.yml to run validation and fabrication export.
-
-## What changed in v4H
-
-- Paused automatic push-triggered full CI to stop repeated failure emails during rapid engineering commits.
-- Fixed initial validator/status drift.
-- Current heavy KiCad workflow is manual dispatch only.
-
-## What changed in v4I
-
-- Added .github/workflows/text-validation.yml as lightweight push-safe text validation workflow.
-- Left .github/workflows/kicad-ci.yml as manual heavy KiCad ERC/DRC/Gerber workflow.
-- Made scripts/validate_repo.py version-tolerant so future status bumps do not break text validation by stale exact-version strings.
-
-## What changed in v4J
-
-- Added FAB_PACKAGE_MANIFEST_v4J.md defining expected fabrication artifact contents, factory parameters and no-order conditions.
+v4L engineering freeze.
 
 ## What changed in v4K
 
-- PowerBoard PCB now includes M3 mounting holes.
-- PowerBoard PCB now includes testpoints: TP_VIN, TP_GNDIN, TP_5V, TP_0V, TP_TRIM, TP_S+, TP_S-.
-- PowerBoard silkscreen now includes stronger guards: no-copper-under-module, remote-sense warning, precharge-first warning, input/output labels.
-- LogicBoard PCB now includes M3 mounting holes.
-- LogicBoard PCB now includes testpoints: TP1_24V, TP2_GND, TP3_12V, TP4_0V.
-- Validator now requires v4K testpoints, mounting holes and board marks.
+- PowerBoard PCB includes M3 mounting holes.
+- PowerBoard PCB includes testpoints: TP_VIN, TP_GNDIN, TP_5V, TP_0V, TP_TRIM, TP_S+, TP_S-.
+- PowerBoard silkscreen includes stronger guards: no-copper-under-module, remote-sense warning, precharge-first warning, input/output labels.
+- LogicBoard PCB includes M3 mounting holes.
+- LogicBoard PCB includes testpoints: TP1_24V, TP2_GND, TP3_12V, TP4_0V.
+- Validator requires v4K testpoints, mounting holes and board marks.
 - Added FAB_READINESS_SCORECARD_v4K.md.
+
+## What changed in v4L
+
+- Added ENGINEERING_FREEZE_v4L.md.
+- Stopped speculative repo churn until CI logs, generated Gerbers, official footprint coordinates or real PowerBoard load data are available.
 
 ## Current confidence
 
-- LogicBoard: 88/100 as PCB architecture before automated ERC/DRC. Main remaining blockers: exact official footprint coordinate check, GitHub text-validation result, automated KiCad ERC/DRC results, Gerber artifact review.
-- PowerBoard: 76/100 as PCB architecture before automated ERC/DRC and precharge closure. Main remaining blockers: capacitive-load precharge design, official footprint coordinate check, thermal/current verification, GitHub text-validation result, automated KiCad ERC/DRC results, Gerber artifact review.
+- LogicBoard: 88/100 as PCB architecture before automated ERC/DRC. Close to private prototype candidate after clean ERC/DRC and footprint-coordinate check.
+- PowerBoard: 76/100 as PCB architecture before automated ERC/DRC and precharge closure. Not blind-order production-ready until real capacitive-bank/precharge data are closed.
 
-## Blocking items before fab-ready release
+## Stop condition
 
-1. Lightweight text-validation workflow must pass.
-2. Manual heavy KiCad workflow must be run once after text-validation passes.
-3. KiCad CLI ERC must pass or produce documented fix list.
-4. KiCad CLI DRC must pass or produce documented fix list.
-5. Gerber and Excellon artifacts must be generated by CI.
-6. Independent Gerber viewer check must pass.
-7. Physical or official footprint coordinate verification for both Mornsun modules.
-8. Real capacitive-load data: capacitance, ESR and allowed charge current.
-9. Precharge resistor / relay / MOSFET sizing and thermal validation.
-10. 20A output connector part number and current rating confirmation.
+Do not continue layout iterations without one of these inputs:
+
+1. GitHub Actions text-validation failure log.
+2. GitHub Actions KiCad ERC/DRC/export failure log.
+3. Generated fabrication-output artifact.
+4. Official Mornsun footprint coordinate file or drawing extraction.
+5. Real PowerBoard capacitive-bank data: capacitance, ESR, allowed charge current, duty cycle.
+6. Selected 20A output connector part number.
 
 ## Hard warning
 
-v4K improves mechanical and bring-up completeness, but it does not replace automated ERC, DRC and Gerber review. PowerBoard remains blocked from blind-order production by the real supercap/precharge data.
+This is an engineering freeze, not a production release. Continuing blind edits now would be fake progress. The next meaningful move is validation, not more speculative changes.
