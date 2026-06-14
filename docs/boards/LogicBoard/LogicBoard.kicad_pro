@@ -3,70 +3,73 @@
   "boards": [],
   "component_class_settings": {
     "assignments": [],
-    "meta": {
-      "version": 0
-    },
-    "sheet_component_classes": {
-      "enabled": false
-    }
+    "meta": {"version": 0},
+    "sheet_component_classes": {"enabled": false}
   },
   "cvpcb": "",
   "layout": "",
-  "libraries": {
-    "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
-  },
-  "meta": {
-    "filename": "LogicBoard.kicad_pro",
-    "version": 3
-  },
+  "libraries": {"pinned_footprint_libs": [], "pinned_symbol_libs": []},
+  "meta": {"filename": "LogicBoard.kicad_pro", "version": 3},
   "net_settings": {
     "classes": [
       {
-        "bus_width": 12,
-        "clearance": 0.2,
-        "diff_pair_gap": 0.25,
-        "diff_pair_via_gap": 0.25,
-        "diff_pair_width": 0.2,
-        "line_style": 0,
+        "name": "Default",
+        "priority": 2147483647,
+        "clearance": 0.3,
+        "track_width": 0.35,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
-        "name": "Default",
+        "diff_pair_width": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "wire_width": 6,
+        "bus_width": 12,
+        "line_style": 0,
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2,
-        "tuning_profile": "",
-        "via_diameter": 0.6,
-        "via_drill": 0.3,
-        "wire_width": 6
+        "tuning_profile": ""
+      },
+      {
+        "name": "LOGIC_POWER",
+        "priority": 100,
+        "clearance": 0.3,
+        "track_width": 1.2,
+        "via_diameter": 1.0,
+        "via_drill": 0.5,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "diff_pair_width": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "wire_width": 6,
+        "bus_width": 12,
+        "line_style": 0,
+        "pcb_color": "rgba(0, 200, 120, 0.500)",
+        "schematic_color": "rgba(0, 200, 120, 0.500)",
+        "tuning_profile": ""
       }
     ],
-    "meta": {
-      "version": 5
-    },
+    "meta": {"version": 5},
     "net_colors": null,
-    "netclass_assignments": null,
+    "netclass_assignments": {
+      "VIN_24V": "LOGIC_POWER",
+      "GND_IN": "LOGIC_POWER",
+      "OUT_12V": "LOGIC_POWER",
+      "GND_OUT": "LOGIC_POWER"
+    },
     "netclass_patterns": []
   },
   "no_connects": 0,
-  "pcbnew": {
-    "last_paths": {
-      "idf": "",
-      "netlist": "",
-      "plot": "",
-      "specctra_dsn": "",
-      "vrml": ""
-    },
-    "page_layout_descr_file": ""
-  },
+  "pcbnew": {"last_paths": {"idf": "", "netlist": "", "plot": "", "specctra_dsn": "", "vrml": ""}, "page_layout_descr_file": ""},
   "schematic": "LogicBoard.kicad_sch",
   "sheets": [],
-  "text_variables": {},
-  "tuning_profiles": {
-    "meta": {
-      "version": 0
-    },
-    "tuning_profiles_impedance_geometric": []
-  }
+  "text_variables": {
+    "release_state": "v4E engineering candidate",
+    "fab_clearance": "0.30mm",
+    "copper": "2oz",
+    "board_size": "50x100mm"
+  },
+  "tuning_profiles": {"meta": {"version": 0}, "tuning_profiles_impedance_geometric": []}
 }
